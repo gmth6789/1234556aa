@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CSS -->
+
+   <%-include('common/head.ejs')-%>
+
+
+      <title>Category</title>
+</head>
+
+<body>
+   <%-include('common/header.ejs')-%>
+
+
+      <div class="container-fluid bg-side-nav">
+         <div class="row">
+            <div class="col-lg-2 sidebaare">
+               <%-include('common/sidebaar.ejs')-%>
+            </div>
+            <div class="col-lg-10">
+
+
+
+
+
+
+
+               <div class="dashboard-content-area">
+                  <!-- put your contente -->
+                  <h1>Category</h1>
+                  
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <%if(sucess && sucess !=''){%>
+                           <div class="alert alert-success" role="alert">
+                              <%= sucess%>
+                               </div>
+                       <%}else if(err && err !=''){%>
+                           <div class="alert alert-danger" role="alert">
+                               <%= err%>
+                           <%}%>
+                       
+                     </div>
+                     <div class="col-lg-12">
+                        
+                        <!-- 
+                           SHOW HIDE NAV CODE
+                           <ul class="nav nav-tabs" id="myTab" role="tablist">
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link active" data-bs-toggle="tab" href="#view-all-cat">View All Category</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" data-bs-toggle="tab" href="#add-cat">Add Category</a>
+                           </li>
+                        </ul>
+                        <div class="tab-content">
+                           <div class="tab-pane active" id="view-all-cat">View All Category</div>
+                           <div class="tab-pane" id="add-cat">Add Category</div>
+                        </div> -->
+
+                        <div class="add-and-view-data">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link active" data-bs-toggle="tab" href="#view-all-cat">View All Category</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" data-bs-toggle="tab" href="#add-cat">Add Category</a>
+                           </li>
+                        </ul>
+
+                        <div class="tab-content">
+                           <div class="tab-pane active" id="view-all-cat">
+
+                              <!--view all category table here-->
+                            
+                              <div class="view-details">
+                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                       <tr>
+                                          <th>Image</th>
+                                          <th>Cat. Name</th>
+                                          <th>Cat. Url</th>
+                                          <th>Title</th>
+                                          <th>Meta Desc.</th>
+                                          <th>Meta Key.</th>
+                                          <th>Operation</th>
+                                       </tr>
+                                    </thead>
+                                    <%x.forEach((y)=>{%>
+
+                                    <tbody>
+                                       <tr>
+                                          <td><img src="/backend/assets/images/upload/<%=y.photo%>" width="30"></td>
+                                          <td><%=y.url%></td>
+                                          <td><%=y.metaDescription%></td>
+                                          <td><%=y.metaKeyword%></td>
+                                          <td><%=y.h1%></td>
+                                          <td><%=y.categoryDetails.slice(0, 30)%></td>
+                                          <td>
+                                             <a class="btn btn-primary" href="/admin/category/edit/<%=y._id%>">Edit</a>
+                                             <form style="display:inline;" action="/admin/category/delete/<%=y._id%>?_method=DELETE" method="POST">
+                                                <button style="cursor: pointer;" type="submit" 
+                                                   class="btn btn-danger ml-2">Delete</button>
+                                             </form>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                    <%})%>
+
+                                 </table>
+                              </div>
+                              
+                         
+
+                              <!--view end category table here-->
+
+
+                           </div>
+
+                           <div class="tab-pane" id="add-cat">
+                              <div class="add-form">
+                                 <!--form content here-->
+   <form method="post" action="/admin/category/" enctype="multipart/form-data">
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">  
+        <div class="col col-lg-2"><label class="form-label">URL</label></div>
+        <div class="col"><input type="text" name ="Cat_Url" class="form-control" placeholder="Page Url"></div>
+      </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">           
+          <div class="col col-lg-2"><label class="form-label">Meta Description</label></div>
+          <div class="col"><input type="text" name ="Cat_Meta_Description" class="form-control" placeholder="Page Meta Description"></div>
+      </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">Meta Keyword</label></div>
+        <div class="col"><input type="text" name ="Cat_Meta_Keyword" class="form-control" placeholder="Page Meta Keyword"></div>
+      </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">h1</label></div>
+        <div class="col"><input type="text" name ="Cat_Heading" class="form-control" placeholder="Page Heading"></div>
+      </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center"> 
+        <div class="col col-lg-2"><label class="form-label">Photo</label></div>
+        <div class="col"><input type="file" name="Cat_Photo" class="form-control"></div>
+      </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">Page Details</label></div>
+        <div class="col"><textarea rows="10" id="editor" class="editor form-control Cat_Details" name="Cat_Details" placeholder="Page Details"></textarea></div>
+      </div>
+
+      <div class="mb-5 mt-3 align-items-center text-center"> 
+           <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </form>
+
+                                 <!--end form content here-->
+
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     </div>
+
+                  
+
+
+                     <!-- end your content here -->
+
+                  </div>
+
+                  <!-- end your content here -->
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <%-include('common/footer.ejs')-%>
+         <%-include('common/script.ejs')-%>
+
+</body>
+
+</html>

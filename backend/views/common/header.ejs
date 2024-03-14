@@ -1,0 +1,28 @@
+<header class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+       <a class="navbar-brand text-white ml-4" href="/admin/"><b>Teach Coders</b></a>
+       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <div class="me-5">
+             <ul class="navbar-nav me-5">
+                 <li class="dropdown">
+
+                      <%if(currentUser){%>
+                       <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">Hi <%=currentUser.name%></a>
+                           <ul class="dropdown-menu dropdown-menu-dark">
+                               <li><a class="dropdown-item"  href="/logout">Log Out</a></a></li>
+                               <li><a class="dropdown-item"  href="/logout">Change Password</a></li>
+                           </ul>
+                        <%}else{%>
+                           <li><a href="/login">Login</a></li>
+                        <%}%>
+                </li>
+                
+             </ul>
+
+  
+
+
+          </div>
+       </div>
+    </div>
+ </header>

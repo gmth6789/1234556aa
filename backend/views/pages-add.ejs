@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CSS -->
+
+   <%-include('common/head.ejs')-%>
+
+
+      <title>View Pages / Add Pages</title>
+</head>
+
+<body>
+   <%-include('common/header.ejs')-%>
+
+
+      <div class="container-fluid bg-side-nav">
+         <div class="row">
+            <div class="col-lg-2 sidebaare">
+               <%-include('common/sidebaar.ejs')-%>
+            </div>
+            <div class="col-lg-10">
+
+
+
+
+
+
+
+               <div class="dashboard-content-area">
+                  <!-- put your contente -->
+                  <h1>Pages</h1>
+      
+                  <div class="">
+                                              <!--form content here-->
+   <form method="post" action="/admin/pages/add/<%=x.url%>" enctype="multipart/form-data">
+      <div class="mb-3 mt-3 row g-9 align-items-center">  
+         <div class="col col-lg-2"><label class="form-label">category Name</label></div>
+         <div class="col"><input type="text" name ="Page_Id" class="form-control" placeholder="Page Url" value="<%=x.h1%>" readonly></div>
+       </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">  
+        <div class="col col-lg-2"><label class="form-label">URL</label></div>
+        <div class="col"><input type="text" name ="Page_Url" class="form-control" placeholder="Page Url"></div>
+      </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">           
+          <div class="col col-lg-2"><label class="form-label">Meta Description</label></div>
+          <div class="col"><input type="text" name ="Page_Meta_Description" class="form-control" placeholder="Page Meta Description"></div>
+      </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">Meta Keyword</label></div>
+        <div class="col"><input type="text" name ="Page_Meta_Keyword" class="form-control" placeholder="Page Meta Keyword"></div>
+      </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">h1</label></div>
+        <div class="col"><input type="text" name ="Page_Heading" class="form-control" placeholder="Page Heading"></div>
+      </div>
+
+      <div class="mb-3 mt-3 row g-9 align-items-center"> 
+         <div class="col col-lg-2"><label class="form-label">Youtube Url</label></div>
+         <div class="col"><input type="text" name="you_tube" class="form-control"></div>
+       </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center"> 
+        <div class="col col-lg-2"><label class="form-label">Photo</label></div>
+        <div class="col"><input type="file" name="Page_Photo" class="form-control"></div>
+      </div>
+      
+      <div class="mb-3 mt-3 row g-9 align-items-center">
+        <div class="col col-lg-2"><label class="form-label">Page Details</label></div>
+        <div class="col"><textarea rows="10" id="editor" class="editor form-control Cat_Details" name="Page_Details" placeholder="Page Details"></textarea></div>
+      </div>
+
+      <div class="mb-5 mt-3 align-items-center text-center"> 
+           <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+  </form>
+
+                  </div>
+            </div>
+         </div>
+      </div>
+      <%-include('common/footer.ejs')-%>
+         <%-include('common/script.ejs')-%>
+
+</body>
+
+</html>

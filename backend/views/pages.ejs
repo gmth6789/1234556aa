@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CSS -->
+
+   <%-include('common/head.ejs')-%>
+
+
+      <title>View Pages / Add Pages</title>
+</head>
+
+<body>
+   <%-include('common/header.ejs')-%>
+
+
+      <div class="container-fluid bg-side-nav">
+         <div class="row">
+            <div class="col-lg-2 sidebaare">
+               <%-include('common/sidebaar.ejs')-%>
+            </div>
+            <div class="col-lg-10">
+
+
+
+
+
+
+
+               <div class="dashboard-content-area">
+                  <!-- put your contente -->
+                  <h1>Pages</h1>
+                  
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <%if(sucess && sucess !=''){%>
+                           <div class="alert alert-success" role="alert">
+                              <%= sucess%>
+                               </div>
+                       <%}else if(err && err !=''){%>
+                           <div class="alert alert-danger" role="alert">
+                               <%= err%>
+                           <%}%>
+                       
+                     </div>
+                     <div class="col-lg-12">
+                        
+                        <!-- 
+                           SHOW HIDE NAV CODE
+                           <ul class="nav nav-tabs" id="myTab" role="tablist">
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link active" data-bs-toggle="tab" href="#view-all-page">View All Category</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" data-bs-toggle="tab" href="#view-cat">Add Category</a>
+                           </li>
+                        </ul>
+                        <div class="tab-content">
+                           <div class="tab-pane active" id="view-all-page">View All Category</div>
+                           <div class="tab-pane" id="view-cat">Add Category</div>
+                        </div> -->
+
+                        <div class="add-and-view-data">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link active" data-bs-toggle="tab" href="#view-all-page">View All Pages</a>
+                           </li>
+                           <li class="nav-item" role="presentation">
+                              <a class="nav-link" data-bs-toggle="tab" href="#view-cat">Add Page By Category</a>
+                           </li>
+                          <!--  <li>Add Pages</li> -->
+                        </ul>
+
+                        <div class="tab-content">
+                           <div class="tab-pane active" id="view-all-page">
+
+                              <!--view all category table here-->
+                            
+                              <div class="view-details">
+                                 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                       <tr>
+                                          <th>Image</th>
+                                          <th>Cat. Name</th>
+                                          <th>Cat. Url</th>
+                                          <th>Title</th>
+                                          <th>Meta Desc.</th>
+                                          <th>Meta Key.</th>
+                                          <th>Operation</th>
+                                       </tr>
+                                    </thead>
+                                    <%x.forEach((y)=>{%>
+
+                                    <tbody>
+                                       <tr>
+                                          <td><img src="/backend/assets/images/upload/<%=y.pagePhoto%>" width="30"></td>
+                                          <td><%=y.pageUrl%></td>
+                                          <td><%=y.pageMetaDescription%></td>
+                                          <td><%=y.pageMetaKeyword%></td>
+                                          <td><%=y.pageH1%></td>
+                                          <td><%=y.pageDetails.slice(0, 30)%></td>
+                                          <td>
+                                             <a class="btn btn-primary" href="/admin/pages/edit/<%=y._id%>">Edit</a>
+                                             <form style="display:inline;" action="/admin/pages/delete/<%=y._id%>?_method=DELETE" method="POST">
+                                                <button style="cursor: pointer;" type="submit" 
+                                                   class="btn btn-danger ml-2">Delete</button>
+                                             </form>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                    <%})%>
+
+                                 </table>
+                              </div>
+                              
+                         
+
+                              <!--view end category table here-->
+
+
+                           </div>
+
+                           <div class="tab-pane" id="view-cat">
+                            <!--add page by category-->
+                            <div class="view-details">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <thead>
+                                 <tr>
+                                    <th>Image</th>
+                                    <th>Cat. Url</th>
+                                    <th>Cat. Name</th>
+                                    <th>Add Pages</th>
+                                    
+                                 </tr>
+                              </thead>
+                              <%catdata.forEach((ct)=>{%>
+
+                              <tbody>
+                                 <tr>
+                                    <td><img src="/backend/assets/images/upload/<%=ct.photo%>" width="30"></td>
+                                    <td><%=ct.url%></td>
+                            
+                                    <td><%=ct.h1%></td>
+                           
+                                    <td>
+                                       <a class="btn btn-primary" href="/admin/pages/add/<%=ct.url%>">Add Page</a><br> in <%=ct.h1%> Category
+                                    </td>
+                                 </tr>
+                              </tbody>
+                              <%})%>
+
+                           </table>
+                        </div>
+                        
+                            <!--end page by category-->
+                           </div>
+                        </div>
+                     </div>
+                     </div>
+
+                  
+
+
+                     <!-- end your content here -->
+
+                  </div>
+
+                  <!-- end your content here -->
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <%-include('common/footer.ejs')-%>
+         <%-include('common/script.ejs')-%>
+
+</body>
+
+</html>

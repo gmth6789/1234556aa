@@ -1,0 +1,28 @@
+<script src="/backend/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/backend/assets/js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/backend/assets/js/datatables.min.css"/>
+<script type="text/javascript" src="/backend/assets/js/datatables.min.js"></script>
+<script type="text/javascript">
+   $(document).ready(function() {
+       $('#dataTable').DataTable();
+        rowReorder: true
+		$('#dataTable2').DataTable();
+		rowReorder: true
+     });
+</script>
+
+<script src="/backend/ckeditor/ckeditor.js"></script>
+<!-- 
+<script>
+	CKEDITOR.replace( '.editor' );
+</script> -->
+
+
+<script>
+	CKEDITOR.replace( 'editor', {
+		extraPlugins: 'codesnippet',
+		codeSnippet_theme: 'monokai_sublime',
+		height: 400
+	})
+	
+</script>
